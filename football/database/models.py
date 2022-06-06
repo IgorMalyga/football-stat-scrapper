@@ -20,6 +20,12 @@ class BaseMongoModel(BaseModel):
         return self.__database[self.Meta.collection_name]
 
 
+class League(BaseMongoModel):
+    name: str
+
+    class Meta:
+        collection_name = 'league'
+
 class Club(BaseMongoModel):
     name: str
     statistic_year: int
@@ -28,7 +34,7 @@ class Club(BaseMongoModel):
         collection_name = 'club'
 
 
-class Player(BaseModel):
+class Player(BaseMongoModel):
     first_name: str
     last_name: str
     club: Club
@@ -39,12 +45,13 @@ class Player(BaseModel):
         collection_name = 'player'
 
 
-class Match(BaseModel):
+class Match(BaseMongoModel):
     home_team: Club
     guest_team: Club
     home_goals: int
     guest_goals: int
     result: str
+    league: League
 
     class Meta:
         collection_name = 'match'
