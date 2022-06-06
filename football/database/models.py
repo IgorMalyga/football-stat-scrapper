@@ -22,6 +22,7 @@ class BaseMongoModel(BaseModel):
 
 class Club(BaseMongoModel):
     name: str
+    statistic_year: int
 
     class Meta:
         collection_name = 'club'
@@ -36,3 +37,14 @@ class Player(BaseModel):
 
     class Meta:
         collection_name = 'player'
+
+
+class Match(BaseModel):
+    home_team: Club
+    guest_team: Club
+    home_goals: int
+    guest_goals: int
+    result: str
+
+    class Meta:
+        collection_name = 'match'
